@@ -1,6 +1,7 @@
 import React from "react";
 import Title from "./Title";
 import Price from "./Price";
+import Quantity from "./Quantity";
 
 function Listing({ items }) {
   return (
@@ -18,31 +19,8 @@ function Listing({ items }) {
             </p>
             <p className="item-price">
               <Price price={item.price} currency_code={item.currency_code} />
-              {item.price.split(".")[1] <= 10 ? (
-                <span className="level-low">
-                  {/* item.price.split(".")[1] - это 2 цифры после точки */}
-                  {item.price.split(".")[1]}
-                </span>
-              ) : (
-                true
-              )}
-              {item.price.split(".")[1] > 10 &&
-              item.price.split(".")[1] <= 20 ? (
-                <span className="level-medium">{item.price.split(".")[1]}</span>
-              ) : (
-                true
-              )}
-              {item.price.split(".")[1] > 20 ? (
-                <span className="level-high">{item.price.split(".")[1]}</span>
-              ) : (
-                true
-              )}
-
-              {item.currency_code === "GBP"
-                ? item.price.replace(/[^a-zа-яё\s]/gi, "") + " GBP"
-                : true}
             </p>
-            <p className="item-quantity level-medium">{item.quantity}</p>
+            <Quantity quantity={item.quantity} />
           </div>
         </div>
       ))}
